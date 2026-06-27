@@ -8,132 +8,54 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;800&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;}
-:root{
-  --gold:#c9a84c;--bg:#f4f5f2;--card:#ffffff;
-  --border:#e5e7eb;--up:#16a34a;--dn:#dc2626;
-  --teal:#0891b2;--txt:#111827;--muted:#6b7280;
-}
-body{
-  font-family:'Vazirmatn',Tahoma,sans-serif;
-  background:var(--bg);color:var(--txt);
-  display:flex;flex-direction:column;
-  max-width:480px;margin:0 auto;overflow:hidden;
-  height:100vh;height:100dvh;
-}
-.hdr{
-  background:#fff;border-bottom:2px solid var(--gold);
-  box-shadow:0 2px 8px rgba(0,0,0,.06);padding:12px 14px 8px;flex-shrink:0;
-}
-.hdr-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+:root{--gold:#c9a84c;--bg:#f4f5f2;--card:#ffffff;--border:#e5e7eb;--up:#16a34a;--dn:#dc2626;--teal:#0891b2;--txt:#111827;--muted:#6b7280;}
+body{font-family:'Vazirmatn',Tahoma,sans-serif;background:var(--bg);color:var(--txt);display:flex;flex-direction:column;max-width:480px;margin:0 auto;height:100vh;}
+.hdr{background:#fff;border-bottom:2px solid var(--gold);padding:12px 14px;flex-shrink:0;}
+.hdr-top{display:flex;align-items:center;justify-content:space-between;}
 .hdr-left{display:flex;align-items:center;gap:8px;}
 .hdr-center{text-align:center;flex:1;}
 .hdr-index{text-align:left;}
-.idx-num{font-size:14px;font-weight:800;color:var(--txt);direction:ltr;}
+.idx-num{font-size:14px;font-weight:800;direction:ltr;}
 .idx-chg{font-size:11px;font-weight:700;}
-.idx-lbl{font-size:9px;color:var(--muted);}
-.idx-up{color:var(--up);} .idx-dn{color:var(--dn);}
-.hdr-title{font-size:13px;font-weight:800;color:var(--gold);white-space:nowrap;}
-.update-info{font-size:11px;color:var(--muted);text-align:center;margin-top:4px;}
-.page-tabs{background:#fff;border-bottom:1px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;flex-shrink:0;}
-.page-tabs::-webkit-scrollbar{display:none;}
-.ptab{
-  padding:8px 14px;font-size:12px;font-weight:700;color:var(--muted);
-  cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;
-  font-family:'Vazirmatn',sans-serif;
-  background:none;border-top:none;border-left:none;border-right:none;
-  transition:all .2s;flex-shrink:0;
-}
+.update-info{font-size:11px;color:var(--muted);text-align:center;margin:6px 0;}
+.page-tabs{background:#fff;border-bottom:1px solid var(--border);display:flex;overflow-x:auto;}
+.ptab{padding:8px 14px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;}
 .ptab.active{color:var(--gold);border-bottom-color:var(--gold);}
 .slider-wrap{flex:1;overflow:hidden;position:relative;}
-.slider{display:flex;height:100%;transition:transform .35s cubic-bezier(.4,0,.2,1);will-change:transform;}
-.slide{min-width:100%;height:100%;overflow:hidden;padding:8px 10px;display:flex;flex-direction:column;}
-/* summary */
-.slide-sum{display:flex;flex-direction:column;}
-.sum-grid{flex:1;display:flex;flex-direction:column;gap:5px;min-height:0;}
-.sum-row{
-  flex:1;min-height:0;
-  background:var(--card);border:1px solid var(--border);border-radius:12px;
-  padding:10px 14px;display:flex;align-items:center;gap:8px;
-  cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.05);transition:box-shadow .15s;
-}
-.sum-row:active{box-shadow:0 3px 10px rgba(0,0,0,.1);}
-.sr-name{font-size:18px;font-weight:800;color:var(--txt);min-width:50px;}
-.sr-chg{font-size:12px;font-weight:800;padding:3px 9px;border-radius:20px;direction:ltr;min-width:62px;text-align:center;}
-.up{background:#f0fdf4;color:var(--up);border:1px solid #bbf7d0;}
-.dn{background:#fef2f2;color:var(--dn);border:1px solid #fecaca;}
-.zt{background:#f9fafb;color:var(--muted);border:1px solid var(--border);}
-.sr-right{flex:1;display:flex;flex-direction:column;align-items:flex-end;gap:5px;}
-.sr-price{font-size:20px;font-weight:800;color:var(--txt);}
-.sr-stale{color:var(--muted) !important;font-size:17px !important;}
-.stale-tag{font-size:9px;color:#92400e;background:#fef3c7;border:1px solid #fcd34d;border-radius:5px;padding:1px 6px;margin-top:2px;display:inline-block;}
-.sr-metrics{display:flex;flex-direction:column;gap:3px;align-items:flex-end;}
-.sr-m{font-size:11px;background:#f9fafb;border:1px solid var(--border);border-radius:7px;padding:3px 9px;color:var(--txt);white-space:nowrap;font-weight:600;}
-.update-bottom{font-size:11px;color:var(--muted);text-align:center;margin-top:12px;padding:6px;background:#fff;border-radius:8px;border:1px solid var(--border);}
-/* detail */
-.stk-hero{
-  background:#fff;border:1px solid var(--border);border-radius:12px;
-  border-right:4px solid var(--gold);padding:10px 12px;
-  display:flex;align-items:center;gap:12px;
-  margin-bottom:6px;box-shadow:0 2px 8px rgba(0,0,0,.06);flex-shrink:0;
-}
-.sh-name-col{flex:1;}
-.sh-name{font-size:19px;font-weight:800;color:var(--txt);}
-.sh-badge{display:inline-block;font-size:9px;padding:2px 8px;border-radius:14px;font-weight:700;margin-top:3px;}
-.ok{background:#f0fdf4;color:var(--up);border:1px solid #bbf7d0;}
-.stop{background:#fef2f2;color:var(--dn);border:1px solid #fecaca;}
-.sh-price-big{font-size:22px;font-weight:800;color:var(--txt);direction:ltr;}
-.sec-lbl{font-size:9px;font-weight:700;color:var(--gold);border-right:2px solid var(--gold);padding-right:6px;margin:4px 0 6px;flex-shrink:0;}
-.slide-det{display:flex;flex-direction:column;gap:6px;}
-.det-sec{display:flex;flex-direction:column;}
+.slider{display:flex;height:100%;transition:transform .35s;}
+.slide{min-width:100%;padding:8px 10px;display:flex;flex-direction:column;}
+.sum-grid{flex:1;display:flex;flex-direction:column;gap:6px;}
+.sum-row{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px;display:flex;align-items:center;gap:8px;cursor:pointer;}
+.sr-name{font-size:18px;font-weight:800;}
+.sr-chg{font-size:12px;font-weight:800;padding:3px 9px;border-radius:20px;}
+.up{background:#f0fdf4;color:var(--up);}
+.dn{background:#fef2f2;color:var(--dn);}
+.sr-price{font-size:20px;font-weight:800;}
+.update-bottom{font-size:11px;color:var(--muted);text-align:center;margin-top:10px;padding:6px;background:#fff;border:1px solid var(--border);border-radius:8px;}
+.stk-hero{background:#fff;border:1px solid var(--border);border-radius:12px;border-right:4px solid var(--gold);padding:10px;display:flex;gap:12px;margin-bottom:6px;}
+.sh-name{font-size:19px;font-weight:800;}
+.sh-price-big{font-size:22px;font-weight:800;}
+.sec-lbl{font-size:9px;font-weight:700;color:var(--gold);margin:4px 0;}
 .g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;}
-.cell{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:8px 10px;box-shadow:0 1px 4px rgba(0,0,0,.05);display:flex;flex-direction:column;justify-content:center;text-align:center;}
-.cl{font-size:9px;color:var(--muted);margin-bottom:3px;font-weight:600;}
+.cell{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:8px;text-align:center;}
+.cl{font-size:9px;color:var(--muted);}
 .cv{font-size:16px;font-weight:800;}
-.cu{font-size:11px;color:var(--muted);}
-.c-up{color:var(--up);} .c-dn{color:var(--dn);}
-.c-teal{color:var(--teal);} .c-gold{color:var(--gold);}
-.c-txt{color:var(--txt);} .c-muted{color:var(--muted);}
-/* حقیقی/حقوقی table */
-.ii-wrap{background:var(--card);border:1px solid var(--border);border-radius:9px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04);flex:1;display:flex;flex-direction:column;}
-.ii-hdr{display:grid;grid-template-columns:36px 1fr 1fr;background:#f9fafb;border-bottom:1px solid var(--border);flex-shrink:0;}
-.ii-hdr-lbl{padding:4px;}
-.ii-hdr-col{padding:6px 8px;text-align:center;font-size:12px;font-weight:700;color:var(--muted);border-right:1px solid var(--border);}
-.ii-row{flex:1;display:grid;grid-template-columns:36px 1fr 1fr;border-bottom:1px solid var(--border);}
-.ii-row:last-child{border-bottom:none;}
-.ii-row-lbl{
-  display:flex;align-items:center;justify-content:center;
-  font-size:10px;font-weight:800;
-  writing-mode:vertical-rl;text-orientation:mixed;
-}
-.ii-buy-lbl{background:#fff;color:var(--up);}
-.ii-sell-lbl{background:#fff;color:var(--dn);}
-.ii-cell{padding:6px 6px;text-align:center;border-right:1px solid var(--border);}
-.ii-cell:last-child{border-right:none;}
-.ii-vol{font-size:14px;font-weight:800;}
-.ii-u{font-size:10px;color:var(--muted);}
-.ii-pct{font-size:9px;font-weight:700;color:var(--muted);margin-top:1px;}
-.ii-cnt{font-size:8px;color:var(--muted);}
-.ii-buy{background:#fff;}
-.ii-sell{background:#fff;}
+.c-up{color:var(--up);} .c-dn{color:var(--dn);} .c-gold{color:var(--gold);}
 </style>
 </head>
 <body>
 <div class="hdr">
   <div class="hdr-top">
-    <div class="hdr-left">
-      
-    </div>
-    <div class="hdr-center">
-      <div class="hdr-title">گروه مالی پاسارگاد</div>
-    </div>
+    <div class="hdr-left"></div>
+    <div class="hdr-center"><div style="font-size:13px;font-weight:800;color:var(--gold);">گروه مالی پاسارگاد</div></div>
     <div class="hdr-index">
       <div class="idx-num">۵,۱۷۶,۳۵۵</div>
       <div class="idx-chg idx-up">(+۰.۳%)</div>
-      <div class="idx-lbl">شاخص کل</div>
+      <div style="font-size:9px;color:var(--muted);">شاخص کل</div>
     </div>
   </div>
-  <div class="update-info">آخرین به‌روزرسانی: ۱۴۰۵/۰۴/۰۶ - ۱۵:۳۶</div>
+  <div class="update-info">آخرین به‌روزرسانی: ۱۴۰۵/۰۴/۰۶ - ۱۵:۵۹</div>
   <div class="page-tabs" id="pageTabs"></div>
 </div>
 
@@ -143,187 +65,68 @@ body{
 
 <script>
 const stocks = [{"name": "وپاسار", "status": "مجاز", "lastPrice": 1073, "closingPrice": 1074, "prevPrice": 1062, "change": 1.04, "closingChange": 1.13, "volume": 250623691, "value": 2691877164110, "retailBuy": 145680359, "retailSell": 158986531, "instBuy": 104943332, "instSell": 91637160, "moneyFlow": -142908287280, "avgVolume": 76827490, "marketCap": 504.23, "capital": 46.95, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}, {"name": "آریان", "status": "مجاز", "lastPrice": 521, "closingPrice": 527, "prevPrice": 517, "change": 0.77, "closingChange": 1.93, "volume": 7470255, "value": 39403238870, "retailBuy": 7460255, "retailSell": 3919499, "instBuy": 10000, "instSell": 3550756, "moneyFlow": 18659784120, "avgVolume": 21655409, "marketCap": 79.05, "capital": 15.0, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}, {"name": "بپاس", "status": "مجاز", "lastPrice": 808, "closingPrice": 807, "prevPrice": 785, "change": 2.93, "closingChange": 2.8, "volume": 26648711, "value": 215079959900, "retailBuy": 16803247, "retailSell": 10165782, "instBuy": 9845464, "instSell": 16482929, "moneyFlow": 53564342550, "avgVolume": 14589446, "marketCap": 83.52, "capital": 10.35, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}, {"name": "میدکو", "status": "مجاز", "lastPrice": 734, "closingPrice": 730, "prevPrice": 716, "change": 2.51, "closingChange": 1.96, "volume": 67934237, "value": 495823402970, "retailBuy": 21321224, "retailSell": 47402134, "instBuy": 46613013, "instSell": 20532103, "moneyFlow": -190390643000, "avgVolume": 63789697, "marketCap": 211.7, "capital": 29.0, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}, {"name": "اتکای", "status": "مجاز", "lastPrice": 230, "closingPrice": 226, "prevPrice": 232, "change": -0.9, "closingChange": -2.54, "volume": 11724808, "value": 26524162517, "retailBuy": 4462567, "retailSell": 1305715, "instBuy": 7262241, "instSell": 10419093, "moneyFlow": 7140799224, "avgVolume": 6018695, "marketCap": 4.52, "capital": 2.0, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}];
+const update_text = "آخرین به‌روزرسانی: ۱۴۰۵/۰۴/۰۶ - ۱۵:۵۹";
 let curSi = 0;
-const update_text = "آخرین به‌روزرسانی: ۱۴۰۵/۰۴/۰۶ - ۱۵:۳۶";
 
-/* ── number format functions ── */
-function nVol(n) {
-  if (!n) return '—';
-  var m = n / 1e6;
-  if (m >= 1) return parseFloat(m.toFixed(1)).toLocaleString('fa-IR');
-  return n.toLocaleString('fa-IR');
-}
-function uVol(n) {
-  if (!n) return '';
-  return n >= 1e6 ? 'میلیون سهم' : 'سهم';
-}
-function nVal(n) {
-  if (!n) return '—';
-  var b = n / 1e10;
-  if (b >= 1) return (b >= 10 ? Math.round(b) : parseFloat(b.toFixed(1))).toLocaleString('fa-IR');
-  return parseFloat((b * 1000).toFixed(0)).toLocaleString('fa-IR');
-}
-function uVal(n) {
-  if (!n) return '';
-  return n / 1e10 >= 1 ? 'میلیارد تومان' : 'میلیون تومان';
-}
-function nFlow(n) {
-  if (!n) return '—';
-  var b = Math.abs(n) / 1e10;
-  var sign = n > 0 ? '+' : '-';
-  return sign + (b >= 10 ? Math.round(b) : parseFloat(b.toFixed(1))).toLocaleString('fa-IR');
-}
-function nMC(n) {
-  if (!n) return '—';
-  var v = parseFloat(n);
-  return (v >= 10 ? Math.round(v) : parseFloat(v.toFixed(1))).toLocaleString('fa-IR');
-}
-function cc(c) { return c > 0 ? 'up' : c < 0 ? 'dn' : 'zt'; }
-function cv(c) { return c > 0 ? 'c-up' : c < 0 ? 'c-dn' : 'c-muted'; }
+function nVol(n) { if(!n) return '—'; var m=n/1e6; return m>=1 ? parseFloat(m.toFixed(1)).toLocaleString('fa-IR') : n.toLocaleString('fa-IR'); }
+function uVol(n) { return n>=1e6 ? 'میلیون سهم' : 'سهم'; }
+function nVal(n) { if(!n) return '—'; var b=n/1e10; return b>=1 ? parseFloat(b.toFixed(1)).toLocaleString('fa-IR') : parseFloat((b*1000).toFixed(0)).toLocaleString('fa-IR'); }
+function uVal(n) { return n/1e10 >=1 ? 'میلیارد تومان' : 'میلیون تومان'; }
+function nMC(n) { if(!n) return '—'; var v=parseFloat(n); return (v>=10?Math.round(v):parseFloat(v.toFixed(1))).toLocaleString('fa-IR'); }
+function cc(c) { return c>0?'up':c<0?'dn':'zt'; }
 
 function cell(lbl, num, unit, cls) {
-  if (num && num !== '—' && unit) {
-    return '<div class="cell"><div class="cl">' + lbl + '</div>'
-      + '<div class="cv ' + cls + '">' + num + '<span class="cu"> ' + unit + '</span></div></div>';
-  }
-  return '<div class="cell"><div class="cl">' + lbl + '</div>'
-    + '<div class="cv ' + cls + '">' + (num || '—') + '</div></div>';
+  return `<div class="cell"><div class="cl">${lbl}</div><div class="cv ${cls}">${num} <span class="cu">${unit}</span></div></div>`;
 }
 
 function buildSummary() {
-  if (!stocks.length) return '<div style="padding:30px;text-align:center;color:#888">داده‌ای موجود نیست</div>';
   var html = '<div class="sum-grid">';
-  stocks.forEach(function(s, si) {
-    var sign = s.change > 0 ? '+' : '';
-    html += '<div class="sum-row" onclick="goSlide(' + (si + 1) + ')">'
-      + '<div class="sr-name">' + s.name + '</div>'
-      + '<div class="sr-chg ' + cc(s.change) + '">' + sign + s.change + '%</div>'
-      + '<div class="sr-right">'
-      + '<div class="sr-price' + (s.stale ? ' sr-stale' : '') + '">' + (s.lastPrice || 0).toLocaleString('fa-IR') + ' تومان</div>'
-      + (s.stale ? '<div class="stale-tag">آخرین قیمت معتبر</div>' : '')
-      + '<div class="sr-metrics">'
-      + '<div class="sr-m">حجم معاملات ' + nVol(s.volume) + ' ' + uVol(s.volume) + '</div>'
-      + '<div class="sr-m">ارزش معاملات ' + nVal(s.value) + ' ' + uVal(s.value) + '</div>'
-      + '</div></div></div>';
+  stocks.forEach((s,i) => {
+    var sign = s.change>0 ? '+' : '';
+    html += `<div class="sum-row" onclick="goSlide(${i+1})">`
+      + `<div class="sr-name">${s.name}</div>`
+      + `<div class="sr-chg ${cc(s.change)}">${sign}${s.change}%</div>`
+      + `<div style="flex:1;text-align:left;"><div class="sr-price">${(s.lastPrice||0).toLocaleString('fa-IR')} تومان</div></div>`
+      + `</div>`;
   });
-  html += '</div><div class="update-bottom">' + update_text + '</div>';
+  html += `</div><div class="update-bottom">${update_text}</div>`;
   return html;
 }
 
-function buildII(s) {
-  var rB = s.retailBuy || 0,  rS = s.retailSell || 0;
-  var iB = s.instBuy   || 0,  iS = s.instSell   || 0;
-  var rBc = s.retailBuyCnt  || 0, rSc = s.retailSellCnt || 0;
-  var iBc = s.instBuyCnt    || 0, iSc = s.instSellCnt   || 0;
-  var totB = rB + iB, totS = rS + iS;
-  var rBp = totB > 0 ? (rB/totB*100).toFixed(1) : '—';
-  var iBp = totB > 0 ? (iB/totB*100).toFixed(1) : '—';
-  var rSp = totS > 0 ? (rS/totS*100).toFixed(1) : '—';
-  var iSp = totS > 0 ? (iS/totS*100).toFixed(1) : '—';
-
-  return '<div class="ii-wrap">'
-    + '<div class="ii-hdr">'
-    + '<div class="ii-hdr-lbl"></div>'
-    + '<div class="ii-hdr-col">حقیقی</div>'
-    + '<div class="ii-hdr-col">حقوقی</div>'
-    + '</div>'
-    + '<div class="ii-row">'
-    + '<div class="ii-row-lbl ii-buy-lbl">خرید</div>'
-    + '<div class="ii-cell ii-buy"><div class="ii-vol c-up">' + nVol(rB) + '<span class="ii-u"> ' + uVol(rB) + '</span></div><div class="ii-pct">' + rBp + '%</div>' + (rBc ? '<div class="ii-cnt">' + rBc.toLocaleString('fa-IR') + ' نفر</div>' : '') + '</div>'
-    + '<div class="ii-cell"><div class="ii-vol c-up">' + nVol(iB) + '<span class="ii-u"> ' + uVol(iB) + '</span></div><div class="ii-pct">' + iBp + '%</div>' + (iBc ? '<div class="ii-cnt">' + iBc.toLocaleString('fa-IR') + ' نفر</div>' : '') + '</div>'
-    + '</div>'
-    + '<div class="ii-row">'
-    + '<div class="ii-row-lbl ii-sell-lbl">فروش</div>'
-    + '<div class="ii-cell ii-sell"><div class="ii-vol c-dn">' + nVol(rS) + '<span class="ii-u"> ' + uVol(rS) + '</span></div><div class="ii-pct">' + rSp + '%</div>' + (rSc ? '<div class="ii-cnt">' + rSc.toLocaleString('fa-IR') + ' نفر</div>' : '') + '</div>'
-    + '<div class="ii-cell ii-sell"><div class="ii-vol c-dn">' + nVol(iS) + '<span class="ii-u"> ' + uVol(iS) + '</span></div><div class="ii-pct">' + iSp + '%</div>' + (iSc ? '<div class="ii-cnt">' + iSc.toLocaleString('fa-IR') + ' نفر</div>' : '') + '</div>'
-    + '</div>'
-    + '</div>';
-}
-
 function buildDetail(s) {
-  var sign = s.change > 0 ? '+' : '';
-  var chgStr = sign + s.change + '%';
-  var sBadge = s.status === 'مجاز' ? 'ok' : 'stop';
-  var pCls = cv(s.change);
-  var fCls = (s.moneyFlow || 0) >= 0 ? 'c-up' : 'c-dn';
-  var fNum = nFlow(s.moneyFlow);
+  var html = `<div class="stk-hero">`
+    + `<div><div class="sh-name">${s.name}</div><div style="font-size:9px;padding:2px 8px;border-radius:12px;background:#f0fdf4;color:var(--up);display:inline-block;">${s.status}</div></div>`
+    + `<div style="text-align:left;"><div style="font-size:11px;color:#666;">آخرین معامله</div><div style="font-size:22px;font-weight:800;">${(s.lastPrice||0).toLocaleString('fa-IR')}</div><div style="font-size:11px;color:#666;">تومان</div></div>`
+    + `</div>`;
 
-  var html = '<div class="stk-hero">'
-    + '<div class="sh-name-col">'
-    + '<div class="sh-name">' + s.name + '</div>'
-    + '<div class="sh-badge ' + sBadge + '">' + s.status + '</div>'
-    + '</div>'
-    + '<div style="text-align:left;flex-shrink:0;">'
-    + '<div style="font-size:11px;color:var(--muted);">آخرین معامله</div>'
-    + '<div class="sh-price-big ' + pCls + '">' + (s.lastPrice || 0).toLocaleString('fa-IR') + '</div>'
-    + '<div style="font-size:11px;color:var(--muted);">تومان</div>'
-    + '</div>'
-    + '</div>';
-
-  html += '<div class="det-sec">'
-    + '<div class="sec-lbl">اطلاعات کلیدی</div>'
-    + '<div class="g4">'
-    + cell('قیمت دیروز', (s.prevPrice || 0).toLocaleString('fa-IR'), 'تومان', 'c-muted')
-    + cell('قیمت پایانی', (s.closingPrice || 0).toLocaleString('fa-IR'), 'تومان', 'c-muted')
-    + cell('سرمایه', (s.capital || 0).toLocaleString('fa-IR'), 'همت', 'c-gold')
+  html += `<div style="margin:8px 0 4px;font-size:9px;font-weight:700;color:var(--gold);">اطلاعات کلیدی</div><div class="g4">`
+    + cell('قیمت دیروز', (s.prevPrice||0).toLocaleString('fa-IR'), 'تومان', '')
+    + cell('قیمت پایانی', (s.closingPrice||0).toLocaleString('fa-IR'), 'تومان', '')
+    + cell('سرمایه', (s.capital||0).toLocaleString('fa-IR'), 'همت', 'c-gold')
     + cell('ارزش بازار', nMC(s.marketCap), 'همت', 'c-gold')
-    + '</div></div>';
+    + `</div>`;
 
-  html += '<div class="det-sec">'
-    + '<div class="sec-lbl">حجم و ارزش معاملات</div>'
-    + '<div class="g3">'
+  html += `<div style="margin:8px 0 4px;font-size:9px;font-weight:700;color:var(--gold);">حجم و ارزش</div><div class="g3">`
     + cell('حجم معاملات', nVol(s.volume), uVol(s.volume), 'c-teal')
-    + cell('میانگین حجم ماه', nVol(s.avgVolume), uVol(s.avgVolume), 'c-muted')
-    + cell('ارزش معاملات', nVal(s.value), uVal(s.value), 'c-txt')
-    + '</div></div>';
-
-  html += '<div class="det-sec">'
-    + '<div class="sec-lbl">ورود پول حقیقی</div>'
-    + '<div class="cell">'
-    + (fNum !== '—'
-      ? '<div class="cv ' + fCls + '">' + fNum + '<span class="cu"> میلیارد تومان</span></div>'
-      : '<div class="cv c-muted">—</div>')
-    + '</div></div>';
-
-  html += '<div class="det-sec">'
-    + '<div class="sec-lbl">حقیقی / حقوقی</div>'
-    + buildII(s)
-    + '</div>';
+    + cell('میانگین حجم ماه', nVol(s.avgVolume), uVol(s.avgVolume), '')
+    + cell('ارزش معاملات', nVal(s.value), uVal(s.value), '')
+    + `</div>`;
 
   return html;
 }
 
 function goSlide(si) {
   curSi = si;
-  document.getElementById('slider').style.transform = 'translateX(' + (si * 100) + '%)';
-  document.querySelectorAll('.ptab').forEach(function(t, i) { t.classList.toggle('active', i === si); });
-  var tabs = document.querySelectorAll('.ptab');
-  if (tabs[si]) tabs[si].scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  document.getElementById('slider').style.transform = `translateX(-${si*100}%)`;
 }
 
 function init() {
-  var names = ['خلاصه'].concat(stocks.map(function(s) { return s.name; }));
-  document.getElementById('pageTabs').innerHTML = names.map(function(n, i) {
-    return '<button class="ptab' + (i === 0 ? ' active' : '') + '" onclick="goSlide(' + i + ')">' + n + '</button>';
-  }).join('');
-
-  var slides = ['<div class="slide slide-sum">' + buildSummary() + '</div>'];
-  stocks.forEach(function(s) { slides.push('<div class="slide slide-det">' + buildDetail(s) + '</div>'); });
+  var names = ['خلاصه'].concat(stocks.map(s => s.name));
+  document.getElementById('pageTabs').innerHTML = names.map((n,i) => `<button class="ptab ${i===0?'active':''}" onclick="goSlide(${i})">${n}</button>`).join('');
+  var slides = ['<div class="slide">' + buildSummary() + '</div>'];
+  stocks.forEach(s => slides.push('<div class="slide">' + buildDetail(s) + '</div>'));
   document.getElementById('slider').innerHTML = slides.join('');
 }
-
-var startX = 0;
-document.getElementById('wrap').addEventListener('touchstart', function(e) {
-  startX = e.touches[0].clientX;
-}, {passive:true});
-document.getElementById('wrap').addEventListener('touchend', function(e) {
-  var dx = e.changedTouches[0].clientX - startX;
-  var total = stocks.length + 1;
-  if (Math.abs(dx) > 50) {
-    if (dx < 0 && curSi < total - 1) goSlide(curSi + 1);
-    else if (dx > 0 && curSi > 0)   goSlide(curSi - 1);
-  }
-});
 
 init();
 </script>
