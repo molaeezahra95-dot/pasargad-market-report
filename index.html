@@ -74,10 +74,10 @@ body{
 .stk-hero{
   background:#fff;border:1px solid var(--border);border-radius:12px;
   border-right:3px solid var(--gold);padding:7px 10px 6px;
-  display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:8px;
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:6px;
   margin-bottom:4px;box-shadow:0 2px 6px rgba(0,0,0,.06);flex-shrink:0;
 }
-.candle-wrap{display:flex;flex-direction:column;align-items:center;gap:2px;padding:2px 4px;}
+.candle-wrap{display:flex;flex-direction:column;align-items:center;gap:2px;padding:2px 0;min-width:110px;}
 .candle-lbl{font-size:8px;color:var(--muted);font-weight:600;white-space:nowrap;}
 .candle-svg{display:block;}
 .sh-name-col{text-align:right;}
@@ -156,7 +156,7 @@ body{
 </div>
 
 <script>
-const stocks = [{"name": "وپاسار", "status": "مجاز", "lastPrice": 1042, "closingPrice": 1043, "prevPrice": 1074, "highPrice": 0, "lowPrice": 0, "change": -2.98, "closingChange": -2.89, "volume": 197807396, "value": 2062735094770, "retailBuy": 20599450, "retailSell": 145606396, "instBuy": 177206946, "instSell": 52200000, "moneyFlow": -1303822446780, "avgVolume": 85517300, "marketCap": 489.67, "capital": 46.9, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}, {"name": "آریان", "status": "مجاز", "lastPrice": 512, "closingPrice": 512, "prevPrice": 527, "highPrice": 0, "lowPrice": 0, "change": -2.85, "closingChange": -2.85, "volume": 13299996, "value": 68101372070, "retailBuy": 1292826, "retailSell": 13299996, "instBuy": 12007170, "instSell": 0, "moneyFlow": -61476710400, "avgVolume": 20946152, "marketCap": 76.8, "capital": 15.0, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}, {"name": "بپاس", "status": "مجاز", "lastPrice": 826, "closingPrice": 806, "prevPrice": 807, "highPrice": 0, "lowPrice": 0, "change": 2.35, "closingChange": -0.12, "volume": 20771526, "value": 167382242530, "retailBuy": 4859778, "retailSell": 14721526, "instBuy": 15911748, "instSell": 6050000, "moneyFlow": -79485688880, "avgVolume": 15192409, "marketCap": 83.42, "capital": 10.3, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}, {"name": "میدکو", "status": "مجاز", "lastPrice": 740, "closingPrice": 739, "prevPrice": 730, "highPrice": 0, "lowPrice": 0, "change": 1.37, "closingChange": 1.23, "volume": 296747512, "value": 2192955693310, "retailBuy": 17099309, "retailSell": 104617818, "instBuy": 279636730, "instSell": 192118221, "moneyFlow": -646761781510, "avgVolume": 63996924, "marketCap": 214.31, "capital": 29.0, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}, {"name": "اتکای", "status": "مجاز", "lastPrice": 225, "closingPrice": 224, "prevPrice": 226, "highPrice": 0, "lowPrice": 0, "change": -0.53, "closingChange": -0.93, "volume": 349999, "value": 784465760, "retailBuy": 142799, "retailSell": 116101, "instBuy": 207200, "instSell": 233898, "moneyFlow": 59830218, "avgVolume": 6304000, "marketCap": 4.48, "capital": 2.0, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}];
+const stocks = [{"name": "وپاسار", "status": "مجاز", "lastPrice": 1042, "closingPrice": 1043, "prevPrice": 1074, "highPrice": 0, "lowPrice": 0, "change": -2.98, "closingChange": -2.89, "volume": 197814767, "value": 2062811900590, "retailBuy": 20606821, "retailSell": 145613767, "instBuy": 177206946, "instSell": 52200000, "moneyFlow": -1303822446780, "avgVolume": 85517300, "marketCap": 489.67, "capital": 46.9, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}, {"name": "آریان", "status": "مجاز", "lastPrice": 512, "closingPrice": 512, "prevPrice": 527, "highPrice": 0, "lowPrice": 0, "change": -2.85, "closingChange": -2.85, "volume": 13299996, "value": 68101372070, "retailBuy": 1292826, "retailSell": 13299996, "instBuy": 12007170, "instSell": 0, "moneyFlow": -61476710400, "avgVolume": 20946152, "marketCap": 76.8, "capital": 15.0, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}, {"name": "بپاس", "status": "مجاز", "lastPrice": 825, "closingPrice": 806, "prevPrice": 807, "highPrice": 0, "lowPrice": 0, "change": 2.23, "closingChange": -0.12, "volume": 20772826, "value": 167392967530, "retailBuy": 4861078, "retailSell": 14722826, "instBuy": 15911748, "instSell": 6050000, "moneyFlow": -79485688880, "avgVolume": 15192409, "marketCap": 83.42, "capital": 10.3, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}, {"name": "میدکو", "status": "مجاز", "lastPrice": 741, "closingPrice": 739, "prevPrice": 730, "highPrice": 0, "lowPrice": 0, "change": 1.51, "closingChange": 1.23, "volume": 297244484, "value": 2196633370910, "retailBuy": 17124539, "retailSell": 105125563, "instBuy": 280119245, "instSell": 192118221, "moneyFlow": -650327567360, "avgVolume": 63996924, "marketCap": 214.31, "capital": 29.0, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}, {"name": "اتکای", "status": "مجاز", "lastPrice": 225, "closingPrice": 224, "prevPrice": 226, "highPrice": 0, "lowPrice": 0, "change": -0.53, "closingChange": -0.93, "volume": 349999, "value": 784465760, "retailBuy": 142799, "retailSell": 116101, "instBuy": 207200, "instSell": 233898, "moneyFlow": 59830218, "avgVolume": 6304000, "marketCap": 4.48, "capital": 2.0, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}];
 let curSi = 0;
 
 /* ── number-only format (no units) ── */
@@ -219,7 +219,7 @@ function buildSummary() {
       + '<div class="sr-m">ارزش معاملات ' + nVal(s.value) + ' ' + uVal(s.value) + '</div>'
       + '</div></div></div>';
   });
-  html += '</div><div class="hint">آخرین به‌روزرسانی ۱۴۰۵/۰۴/۰۷ ساعت ۱۱:۰۳</div>';
+  html += '</div><div class="hint">آخرین به‌روزرسانی ۱۴۰۵/۰۴/۰۷ ساعت ۱۱:۰۷</div>';
   return html;
 }
 
@@ -261,7 +261,7 @@ function buildDetail(s) {
   var fCls = (s.moneyFlow || 0) >= 0 ? 'c-up' : 'c-dn';
   var fNum = nFlow(s.moneyFlow);
 
-  /* کندل روز */
+  /* کندل روز — افقی، نقطه صفر = قیمت دیروز */
   var cOpen  = s.prevPrice  || 0;
   var cClose = s.lastPrice  || 0;
   var cHigh  = s.highPrice  || Math.max(cOpen, cClose);
@@ -269,18 +269,32 @@ function buildDetail(s) {
   if (cHigh < Math.max(cOpen, cClose)) cHigh = Math.max(cOpen, cClose);
   if (cLow  > Math.min(cOpen, cClose)) cLow  = Math.min(cOpen, cClose);
   var cColor = cClose >= cOpen ? '#16a34a' : '#dc2626';
-  var svgH = 52, svgW = 22, pad = 4;
-  var priceRange = cHigh - cLow || 1;
-  function py(p) { return pad + (cHigh - p) / priceRange * (svgH - pad*2); }
-  var yH = py(cHigh), yL = py(cLow);
-  var yO = py(cOpen), yC = py(cClose);
-  var bodyTop = Math.min(yO, yC), bodyBot = Math.max(yO, yC);
-  var bodyH = Math.max(bodyBot - bodyTop, 2);
-  var cx = svgW / 2;
+  /* SVG افقی: عرض=110، ارتفاع=32 */
+  var svgW = 110, svgH = 32, padL = 8, padR = 8;
+  var drawW = svgW - padL - padR;
+  /* محدوده قیمتی: قدر مطلق بزرگتر از open */
+  var maxDev = Math.max(Math.abs(cHigh - cOpen), Math.abs(cLow - cOpen), Math.abs(cClose - cOpen), 1);
+  /* تابع تبدیل قیمت به x — مرکز = نقطه صفر (open) */
+  function px(p) { return padL + (p - cOpen + maxDev) / (2 * maxDev) * drawW; }
+  var xOpen  = px(cOpen);   /* مرکز = نقطه صفر */
+  var xClose = px(cClose);
+  var xHigh  = px(cHigh);
+  var xLow   = px(cLow);
+  var cy = svgH / 2;
+  var bodyLeft  = Math.min(xOpen, xClose);
+  var bodyRight = Math.max(xOpen, xClose);
+  var bodyW = Math.max(bodyRight - bodyLeft, 2);
   var candleSvg = '<svg class="candle-svg" width="' + svgW + '" height="' + svgH + '" viewBox="0 0 ' + svgW + ' ' + svgH + '">'
-    + '<line x1="' + cx + '" y1="' + yH.toFixed(1) + '" x2="' + cx + '" y2="' + bodyTop.toFixed(1) + '" stroke="' + cColor + '" stroke-width="1.5"/>'
-    + '<line x1="' + cx + '" y1="' + bodyBot.toFixed(1) + '" x2="' + cx + '" y2="' + yL.toFixed(1) + '" stroke="' + cColor + '" stroke-width="1.5"/>'
-    + '<rect x="' + (cx-5) + '" y="' + bodyTop.toFixed(1) + '" width="10" height="' + bodyH.toFixed(1) + '" fill="' + cColor + '" rx="1"/>'
+    /* خط محور (کمرنگ) */
+    + '<line x1="' + padL + '" y1="' + cy + '" x2="' + (svgW-padR) + '" y2="' + cy + '" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2,2"/>'
+    /* نقطه صفر */
+    + '<circle cx="' + xOpen.toFixed(1) + '" cy="' + cy + '" r="2" fill="#9ca3af"/>'
+    /* shadow چپ (low) */
+    + '<line x1="' + xLow.toFixed(1) + '" y1="' + cy + '" x2="' + bodyLeft.toFixed(1) + '" y2="' + cy + '" stroke="' + cColor + '" stroke-width="1.5"/>'
+    /* shadow راست (high) */
+    + '<line x1="' + bodyRight.toFixed(1) + '" y1="' + cy + '" x2="' + xHigh.toFixed(1) + '" y2="' + cy + '" stroke="' + cColor + '" stroke-width="1.5"/>'
+    /* بدنه */
+    + '<rect x="' + bodyLeft.toFixed(1) + '" y="' + (cy-5) + '" width="' + bodyW.toFixed(1) + '" height="10" fill="' + cColor + '" rx="2"/>'
     + '</svg>';
 
   /* hero */
