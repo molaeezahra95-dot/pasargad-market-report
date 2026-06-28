@@ -94,14 +94,14 @@ body{
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;}
 .g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:4px;}
-.cell{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:7px 6px;box-shadow:0 1px 3px rgba(0,0,0,.05);display:flex;flex-direction:column;justify-content:center;overflow:hidden;}
+.cell{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 7px;box-shadow:0 1px 3px rgba(0,0,0,.05);display:flex;flex-direction:column;justify-content:center;overflow:hidden;}
 .cl{font-size:9px;color:var(--muted);margin-bottom:2px;font-weight:600;}
 .cv{font-size:17px;font-weight:800;white-space:nowrap;}
 .cv-wrap{display:flex;direction:rtl;align-items:baseline;gap:3px;justify-content:center;}
 .cu{font-size:11px;color:var(--muted);}
-.g4 .cv{font-size:14px;}
-.g4 .cu{font-size:9px;}
-.g4 .cl{font-size:8px;}
+.g4 .cv{font-size:16px;}
+.g4 .cu{font-size:10px;}
+.g4 .cl{font-size:9px;}
 .c-up{color:var(--up);} .c-dn{color:var(--dn);}
 .c-teal{color:var(--teal);} .c-gold{color:var(--gold);}
 .c-txt{color:var(--txt);} .c-muted{color:var(--muted);}
@@ -134,7 +134,7 @@ body{
 <div class="hdr">
   <div class="hdr-top">
     <div class="hdr-index">
-      <div class="idx-num">۵,۰۷۶,۸۰۱</div>
+      <div class="idx-num">۵,۰۷۶,۷۴۳</div>
       <div class="idx-chg idx-dn">(-۱.۹۲%)</div>
       <div class="idx-lbl">شاخص کل</div>
     </div>
@@ -153,7 +153,7 @@ body{
 </div>
 
 <script>
-const stocks = [{"name": "وپاسار", "status": "مجاز", "lastPrice": 1042, "closingPrice": 1043, "prevPrice": 1074, "change": -2.98, "closingChange": -2.89, "volume": 197529834, "value": 2059842898730, "retailBuy": 20321400, "retailSell": 145328346, "instBuy": 177206946, "instSell": 52200000, "moneyFlow": -1303822446780, "avgVolume": 85517300, "marketCap": 489.67, "capital": 46.9, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}, {"name": "آریان", "status": "مجاز", "lastPrice": 512, "closingPrice": 512, "prevPrice": 527, "change": -2.85, "closingChange": -2.85, "volume": 8380075, "value": 42911376550, "retailBuy": 1280596, "retailSell": 8380075, "instBuy": 7099479, "instSell": 0, "moneyFlow": -36349332480, "avgVolume": 20946152, "marketCap": 76.8, "capital": 15.0, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}, {"name": "بپاس", "status": "مجاز", "lastPrice": 826, "closingPrice": 803, "prevPrice": 807, "change": 2.35, "closingChange": -0.5, "volume": 18430120, "value": 148063420520, "retailBuy": 3595603, "retailSell": 13178620, "instBuy": 14633017, "instSell": 5050000, "moneyFlow": -76951626510, "avgVolume": 15192409, "marketCap": 83.11, "capital": 10.3, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}, {"name": "میدکو", "status": "مجاز", "lastPrice": 740, "closingPrice": 739, "prevPrice": 730, "change": 1.37, "closingChange": 1.23, "volume": 291627685, "value": 2155062915060, "retailBuy": 16535014, "retailSell": 98538510, "instBuy": 274095671, "instSell": 192092175, "moneyFlow": -606005835440, "avgVolume": 63996924, "marketCap": 214.31, "capital": 29.0, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}, {"name": "اتکای", "status": "مجاز", "lastPrice": 225, "closingPrice": 224, "prevPrice": 226, "change": -0.53, "closingChange": -0.93, "volume": 349999, "value": 784465760, "retailBuy": 142799, "retailSell": 116101, "instBuy": 207200, "instSell": 233898, "moneyFlow": 59830218, "avgVolume": 6304000, "marketCap": 4.48, "capital": 2.0, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}];
+const stocks = [{"name": "وپاسار", "status": "مجاز", "lastPrice": 1042, "closingPrice": 1043, "prevPrice": 1074, "change": -2.98, "closingChange": -2.89, "volume": 197575089, "value": 2060314455830, "retailBuy": 20367143, "retailSell": 145374089, "instBuy": 177206946, "instSell": 52200000, "moneyFlow": -1303822446780, "avgVolume": 85517300, "marketCap": 489.67, "capital": 46.9, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}, {"name": "آریان", "status": "مجاز", "lastPrice": 512, "closingPrice": 512, "prevPrice": 527, "change": -2.85, "closingChange": -2.85, "volume": 10480075, "value": 53663376550, "retailBuy": 1280596, "retailSell": 9880075, "instBuy": 8599479, "instSell": 0, "moneyFlow": -44029332480, "avgVolume": 20946152, "marketCap": 76.8, "capital": 15.0, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}, {"name": "بپاس", "status": "مجاز", "lastPrice": 823, "closingPrice": 803, "prevPrice": 807, "change": 1.98, "closingChange": -0.5, "volume": 18430753, "value": 148068630110, "retailBuy": 3596353, "retailSell": 13380753, "instBuy": 14834400, "instSell": 5050000, "moneyFlow": -78568732000, "avgVolume": 15192409, "marketCap": 83.11, "capital": 10.3, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}, {"name": "میدکو", "status": "مجاز", "lastPrice": 742, "closingPrice": 739, "prevPrice": 730, "change": 1.64, "closingChange": 1.23, "volume": 291658433, "value": 2155290985220, "retailBuy": 16564762, "retailSell": 99565258, "instBuy": 275092671, "instSell": 192092175, "moneyFlow": -613373665440, "avgVolume": 63996924, "marketCap": 214.31, "capital": 29.0, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}, {"name": "اتکای", "status": "مجاز", "lastPrice": 225, "closingPrice": 224, "prevPrice": 226, "change": -0.53, "closingChange": -0.93, "volume": 349999, "value": 784465760, "retailBuy": 142799, "retailSell": 116101, "instBuy": 207200, "instSell": 233898, "moneyFlow": 59830218, "avgVolume": 6304000, "marketCap": 4.48, "capital": 2.0, "retailBuyCnt": 0, "retailSellCnt": 0, "instBuyCnt": 0, "instSellCnt": 0, "stale": false}];
 let curSi = 0;
 
 /* ── number-only format (no units) ── */
@@ -216,7 +216,7 @@ function buildSummary() {
       + '<div class="sr-m">ارزش معاملات ' + nVal(s.value) + ' ' + uVal(s.value) + '</div>'
       + '</div></div></div>';
   });
-  html += '</div><div class="hint">آخرین به‌روزرسانی ۱۴۰۵/۰۴/۰۷ ساعت ۱۰:۴۵</div>';
+  html += '</div><div class="hint">آخرین به‌روزرسانی ۱۴۰۵/۰۴/۰۷ ساعت ۱۰:۴۸</div>';
   return html;
 }
 
