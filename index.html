@@ -54,21 +54,24 @@ body{
 .sum-row{
   flex:1;min-height:0;
   background:var(--card);border:1px solid var(--border);border-radius:12px;
-  padding:10px 14px;display:flex;align-items:center;gap:8px;
+  padding:8px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;
   cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.05);transition:box-shadow .15s;
 }
 .sum-row:active{box-shadow:0 3px 10px rgba(0,0,0,.1);}
-.sr-name{font-size:18px;font-weight:800;color:var(--txt);min-width:50px;}
+.sr-main{display:flex;flex-direction:column;min-width:185px;gap:5px;}
+.sr-head{display:flex;align-items:baseline;gap:9px;white-space:nowrap;}
+.sr-name{font-size:18px;font-weight:800;color:var(--txt);}
 .sr-chg{font-size:12px;font-weight:800;padding:3px 9px;border-radius:20px;direction:ltr;min-width:62px;text-align:center;}
+.sr-chg-row{display:flex;justify-content:flex-end;padding-left:10px;}
 .up{background:#f0fdf4;color:var(--up);border:1px solid #bbf7d0;}
 .dn{background:#fef2f2;color:var(--dn);border:1px solid #fecaca;}
 .zt{background:#f9fafb;color:var(--muted);border:1px solid var(--border);}
-.sr-right{flex:1;display:flex;flex-direction:column;align-items:flex-end;gap:5px;}
-.sr-price{font-size:20px;font-weight:800;color:var(--txt);}
+.sr-price{font-size:18px;font-weight:800;color:var(--txt);}
+.sr-price-unit{font-size:10px;color:var(--muted);font-weight:700;margin-right:3px;}
 .sr-stale{color:var(--muted) !important;font-size:17px !important;}
 .stale-tag{font-size:9px;color:#92400e;background:#fef3c7;border:1px solid #fcd34d;border-radius:5px;padding:1px 6px;margin-top:2px;display:inline-block;}
-.sr-metrics{display:flex;flex-direction:column;gap:3px;align-items:flex-end;}
-.sr-m{font-size:11px;background:#f9fafb;border:1px solid var(--border);border-radius:7px;padding:3px 9px;color:var(--txt);white-space:nowrap;font-weight:600;}
+.sr-metrics{flex:1;display:flex;flex-direction:column;gap:4px;align-items:stretch;min-width:0;}
+.sr-m{font-size:11px;background:#f9fafb;border:1px solid var(--border);border-radius:7px;padding:4px 7px;color:var(--txt);white-space:nowrap;font-weight:700;text-align:center;}
 .hint{font-size:10px;color:var(--muted);text-align:center;margin-top:8px;padding:4px;}
 /* detail */
 .stk-hero{
@@ -148,8 +151,8 @@ body{
 <div class="hdr">
   <div class="hdr-top">
     <div class="hdr-index">
-      <div class="idx-num">—</div>
-      <div class="idx-chg "></div>
+      <div class="idx-num">۵,۰۵۵,۶۴۸</div>
+      <div class="idx-chg idx-dn">(-۲.۴۵%)</div>
       <div class="idx-lbl">شاخص کل</div>
     </div>
     <div class="hdr-center">
@@ -220,17 +223,20 @@ function buildSummary() {
   stocks.forEach(function(s, si) {
     var sign = s.change > 0 ? '+' : '';
     html += '<div class="sum-row" onclick="goSlide(' + (si + 1) + ')">'
+      + '<div class="sr-main">'
+      + '<div class="sr-head">'
       + '<div class="sr-name">' + s.name + '</div>'
-      + '<div class="sr-chg ' + cc(s.change) + '">' + sign + s.change + '%</div>'
-      + '<div class="sr-right">'
-      + '<div class="sr-price' + (s.stale ? ' sr-stale' : '') + '">' + (s.lastPrice || 0).toLocaleString('fa-IR') + ' تومان</div>'
-      
+      + '<div class="sr-price' + (s.stale ? ' sr-stale' : '') + '">' + (s.lastPrice || 0).toLocaleString('fa-IR')
+      + '<span class="sr-price-unit"> تومان</span></div>'
+      + '</div>'
+      + '<div class="sr-chg-row"><div class="sr-chg ' + cc(s.change) + '">' + sign + s.change + '%</div></div>'
+      + '</div>'
       + '<div class="sr-metrics">'
       + '<div class="sr-m">حجم معاملات ' + nVol(s.volume) + ' ' + uVol(s.volume) + '</div>'
       + '<div class="sr-m">ارزش معاملات ' + nVal(s.value) + ' ' + uVal(s.value) + '</div>'
-      + '</div></div></div>';
+      + '</div></div>';
   });
-  html += '</div><div class="hint">آخرین به‌روزرسانی ۱۴۰۵/۰۴/۲۱ ساعت ۱۵:۰۰</div>';
+  html += '</div><div class="hint">آخرین به‌روزرسانی ۱۴۰۵/۰۴/۲۱ ساعت ۱۵:۳۱</div>';
   return html;
 }
 
