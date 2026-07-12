@@ -88,21 +88,19 @@ body{
 .sh-pval{font-size:16px;font-weight:800;}
 .sh-pval-big{font-size:28px;font-weight:800;}
 .sh-pchg{font-size:10px;font-weight:800;padding:2px 6px;border-radius:14px;direction:ltr;}
-.day-candle{direction:ltr;min-width:0;height:45px;position:relative;padding:2px 10px 0;}
+.day-candle{direction:ltr;min-width:0;height:49px;position:relative;padding:1px 8px 0;}
 .dc-title{font-size:8px;font-weight:700;color:var(--muted);text-align:center;direction:rtl;line-height:10px;}
-.dc-track{height:21px;position:relative;margin-top:1px;}
-.dc-wick{position:absolute;height:2px;top:10px;border-radius:2px;}
-.dc-cap{position:absolute;width:2px;height:8px;top:7px;border-radius:2px;transform:translateX(-1px);}
-.dc-body{position:absolute;height:7px;top:7px;border-radius:2px;min-width:3px;border:1px solid rgba(0,0,0,.08);}
-.dc-doji{position:absolute;width:2px;height:15px;top:3px;border-radius:2px;transform:translateX(-1px);}
+.dc-track{width:34px;height:34px;position:relative;margin:1px auto 0;}
+.dc-shadow{position:absolute;width:2px;left:50%;transform:translateX(-50%);border-radius:2px;}
+.dc-body{position:absolute;width:11px;left:50%;transform:translateX(-50%);border-radius:2px;border:1px solid rgba(0,0,0,.08);}
+.dc-doji{position:absolute;width:15px;height:2px;left:50%;transform:translate(-50%,-1px);border-radius:2px;}
 .dc-up{background:var(--up);color:var(--up);}
 .dc-down{background:var(--dn);color:var(--dn);}
 .dc-flat{background:var(--gold);color:var(--gold);}
-.dc-wick.dc-up,.dc-cap.dc-up{background:var(--up);}
-.dc-wick.dc-down,.dc-cap.dc-down{background:var(--dn);}
-.dc-wick.dc-flat,.dc-cap.dc-flat{background:var(--gold);}
+.dc-shadow.dc-up{background:var(--up);}
+.dc-shadow.dc-down{background:var(--dn);}
+.dc-shadow.dc-flat{background:var(--gold);}
 .dc-doji.dc-flat{background:var(--gold);}
-.dc-range{display:flex;justify-content:space-between;direction:ltr;font-size:8px;color:var(--muted);line-height:10px;padding:0 18%;}
 .dc-empty{height:100%;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--muted);direction:rtl;}
 .sec-lbl{font-size:9px;font-weight:700;color:var(--gold);border-right:2px solid var(--gold);padding-right:5px;margin:2px 0 3px;flex-shrink:0;}
 .slide-det{display:flex;flex-direction:column;gap:8px;}
@@ -232,7 +230,7 @@ function buildSummary() {
       + '<div class="sr-m">ارزش معاملات ' + nVal(s.value) + ' ' + uVal(s.value) + '</div>'
       + '</div></div></div>';
   });
-  html += '</div><div class="hint">آخرین به‌روزرسانی ۱۴۰۵/۰۴/۲۱ ساعت ۱۴:۵۱</div>';
+  html += '</div><div class="hint">آخرین به‌روزرسانی ۱۴۰۵/۰۴/۲۱ ساعت ۱۴:۵۵</div>';
   return html;
 }
 
@@ -278,28 +276,29 @@ function buildDayCandle(s) {
   /* برای مقاومت در برابر داده ناقص API، ابتدا OHLC را به بازه معتبر می‌بریم. */
   h = Math.max(h, o, c);
   l = Math.min(l, o, c);
-  var scaleLow = Number(s.minAllowed || 0);
-  var scaleHigh = Number(s.maxAllowed || 0);
-  if (!scaleLow || !scaleHigh || scaleHigh <= scaleLow) {
-    var base = Number(s.prevPrice || o);
-    scaleLow = Math.min(l, base * 0.95);
-    scaleHigh = Math.max(h, base * 1.05);
-  }
-  scaleLow = Math.min(scaleLow, l);
-  scaleHigh = Math.max(scaleHigh, h);
-  var range = scaleHigh - scaleLow;
-  var pos = function(v) {
-    return range > 0 ? 22 + ((v - scaleLow) / range * 56) : 50;
+  var bodyTop = Math.max(o, c);
+  var bodyBottom = Math.min(o, c);
+  var bodyHeightValue = bodyTop - bodyBottom;
+  var upperShadowValue = h - bodyTop;
+  var lowerShadowValue = bodyBottom - l;
+  var totalHeight = h - l;
+
+  /* تبدیل نسبت‌های قیمتی به مختصات عمودی کوچک داخل کارت */
+  var priceY = function(v) {
+    return totalHeight > 0 ? 2 + ((h - v) / totalHeight * 30) : 17;
   };
-  var op = pos(o), cp = pos(c), lp = pos(l), hp = pos(h);
-  var bodyLeft = Math.min(op, cp);
-  var bodyWidth = Math.max(Math.abs(cp - op), 2);
-  var wickWidth = Math.max(hp - lp, 0);
+  var highY = priceY(h);
+  var bodyTopY = priceY(bodyTop);
+  var bodyBottomY = priceY(bodyBottom);
+  var lowY = priceY(l);
+  var bodyHeightPx = totalHeight > 0 ? (bodyHeightValue / totalHeight * 30) : 0;
+  var upperShadowPx = totalHeight > 0 ? (upperShadowValue / totalHeight * 30) : 0;
+  var lowerShadowPx = totalHeight > 0 ? (lowerShadowValue / totalHeight * 30) : 0;
   var isDoji = Math.abs(c - o) < 0.0001;
   var cls = c > o ? 'dc-up' : (c < o ? 'dc-down' : 'dc-flat');
   var bodyHtml = isDoji
-    ? '<div class="dc-doji dc-flat" style="left:' + op + '%"></div>'
-    : '<div class="dc-body ' + cls + '" style="left:' + bodyLeft + '%;width:' + bodyWidth + '%"></div>';
+    ? '<div class="dc-doji dc-flat" style="top:' + bodyTopY + 'px"></div>'
+    : '<div class="dc-body ' + cls + '" style="top:' + bodyTopY + 'px;height:' + Math.max(bodyHeightPx, 1) + 'px"></div>';
   var tip = 'مبنای بازار: ' + Number(s.prevPrice || 0).toLocaleString('fa-IR')
     + ' | O: ' + o.toLocaleString('fa-IR')
     + ' | H: ' + h.toLocaleString('fa-IR')
@@ -309,13 +308,10 @@ function buildDayCandle(s) {
   return '<div class="day-candle" title="' + tip + '">'
     + '<div class="dc-title">کندل روز</div>'
     + '<div class="dc-track">'
-    + '<div class="dc-wick ' + cls + '" style="left:' + lp + '%;width:' + wickWidth + '%"></div>'
-    + '<div class="dc-cap ' + cls + '" style="left:' + lp + '%"></div>'
-    + '<div class="dc-cap ' + cls + '" style="left:' + hp + '%"></div>'
+    + '<div class="dc-shadow ' + cls + '" style="top:' + highY + 'px;height:' + upperShadowPx + 'px"></div>'
+    + '<div class="dc-shadow ' + cls + '" style="top:' + bodyBottomY + 'px;height:' + lowerShadowPx + 'px"></div>'
     + bodyHtml
     + '</div>'
-    + '<div class="dc-range"><span>' + Math.round(scaleLow).toLocaleString('fa-IR') + '</span>'
-    + '<span>' + Math.round(scaleHigh).toLocaleString('fa-IR') + '</span></div>'
     + '</div>';
 }
 
