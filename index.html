@@ -35,14 +35,14 @@ body{
 .hdr-right{text-align:left;}
 .hdr-date{font-size:11px;font-weight:700;background:var(--gold);color:#fff;padding:2px 8px;border-radius:12px;display:inline-block;}
 .hdr-upd{font-size:9px;color:var(--muted);margin-top:2px;}
-.page-tabs{background:#fff;border-bottom:1px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;flex-shrink:0;}
+.page-tabs{background:#fff;border-bottom:1px solid var(--border);display:flex;overflow:hidden;scrollbar-width:none;flex-shrink:0;justify-content:space-between;}
 .page-tabs::-webkit-scrollbar{display:none;}
 .ptab{
-  padding:8px 14px;font-size:12px;font-weight:700;color:var(--muted);
+  padding:7px 3px;font-size:10.5px;font-weight:700;color:var(--muted);
   cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;
   font-family:'Vazirmatn',sans-serif;
   background:none;border-top:none;border-left:none;border-right:none;
-  transition:all .2s;flex-shrink:0;
+  transition:all .2s;flex:1 1 0;min-width:0;text-align:center;
 }
 .ptab.active{color:var(--gold);border-bottom-color:var(--gold);}
 .slider-wrap{flex:1;overflow:hidden;position:relative;}
@@ -62,7 +62,7 @@ body{
 .sr-head{display:flex;align-items:baseline;gap:9px;white-space:nowrap;}
 .sr-name{font-size:18px;font-weight:800;color:var(--txt);}
 .sr-chg{font-size:12px;font-weight:800;padding:3px 9px;border-radius:20px;direction:ltr;min-width:62px;text-align:center;}
-.sr-chg-row{display:flex;justify-content:flex-end;padding-left:10px;}
+.sr-chg-row{display:flex;justify-content:flex-start;padding-right:42px;}
 .up{background:#f0fdf4;color:var(--up);border:1px solid #bbf7d0;}
 .dn{background:#fef2f2;color:var(--dn);border:1px solid #fecaca;}
 .zt{background:#f9fafb;color:var(--muted);border:1px solid var(--border);}
@@ -77,7 +77,7 @@ body{
 .stk-hero{
   background:#fff;border:1px solid var(--border);border-radius:12px;
   border-right:3px solid var(--gold);padding:7px 10px 6px;
-  display:grid;grid-template-columns:auto auto minmax(125px,1fr);align-items:center;gap:10px;
+  display:grid;grid-template-columns:auto 1fr;align-items:center;gap:8px;
   margin-bottom:4px;box-shadow:0 2px 6px rgba(0,0,0,.06);flex-shrink:0;
 }
 .sh-name-col{text-align:right;}
@@ -236,7 +236,7 @@ function buildSummary() {
       + '<div class="sr-m">ارزش معاملات ' + nVal(s.value) + ' ' + uVal(s.value) + '</div>'
       + '</div></div>';
   });
-  html += '</div><div class="hint">آخرین به‌روزرسانی ۱۴۰۵/۰۴/۲۱ ساعت ۱۵:۳۱</div>';
+  html += '</div><div class="hint">آخرین به‌روزرسانی ۱۴۰۵/۰۴/۲۱ ساعت ۱۵:۳۹</div>';
   return html;
 }
 
@@ -343,7 +343,6 @@ function buildDetail(s) {
     + '<span class="sh-pchg ' + cc(s.change) + '">' + chgStr + '</span>'
     + '</div>'
     + '</div>'
-    + buildDayCandle(s)
     + '</div>';
 
   /* باکس ۱ (بدون عنوان): قیمت دیروز | قیمت پایانی | سرمایه | ارزش بازار */
