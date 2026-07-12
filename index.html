@@ -88,19 +88,21 @@ body{
 .sh-pval{font-size:16px;font-weight:800;}
 .sh-pval-big{font-size:28px;font-weight:800;}
 .sh-pchg{font-size:10px;font-weight:800;padding:2px 6px;border-radius:14px;direction:ltr;}
-.day-candle{direction:ltr;min-width:0;height:52px;position:relative;padding:2px 6px 0;}
+.day-candle{direction:ltr;min-width:0;height:45px;position:relative;padding:2px 10px 0;}
 .dc-title{font-size:8px;font-weight:700;color:var(--muted);text-align:center;direction:rtl;line-height:10px;}
-.dc-track{height:25px;position:relative;margin-top:1px;}
-.dc-wick{position:absolute;height:2px;top:12px;border-radius:2px;}
-.dc-cap{position:absolute;width:2px;height:10px;top:8px;border-radius:2px;transform:translateX(-1px);}
-.dc-body{position:absolute;height:11px;top:7px;border-radius:2px;min-width:3px;border:1px solid rgba(0,0,0,.08);}
+.dc-track{height:21px;position:relative;margin-top:1px;}
+.dc-wick{position:absolute;height:2px;top:10px;border-radius:2px;}
+.dc-cap{position:absolute;width:2px;height:8px;top:7px;border-radius:2px;transform:translateX(-1px);}
+.dc-body{position:absolute;height:7px;top:7px;border-radius:2px;min-width:3px;border:1px solid rgba(0,0,0,.08);}
+.dc-doji{position:absolute;width:2px;height:15px;top:3px;border-radius:2px;transform:translateX(-1px);}
 .dc-up{background:var(--up);color:var(--up);}
 .dc-down{background:var(--dn);color:var(--dn);}
 .dc-flat{background:var(--gold);color:var(--gold);}
 .dc-wick.dc-up,.dc-cap.dc-up{background:var(--up);}
 .dc-wick.dc-down,.dc-cap.dc-down{background:var(--dn);}
 .dc-wick.dc-flat,.dc-cap.dc-flat{background:var(--gold);}
-.dc-range{display:flex;justify-content:space-between;direction:ltr;font-size:8px;color:var(--muted);line-height:10px;}
+.dc-doji.dc-flat{background:var(--gold);}
+.dc-range{display:flex;justify-content:space-between;direction:ltr;font-size:8px;color:var(--muted);line-height:10px;padding:0 18%;}
 .dc-empty{height:100%;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--muted);direction:rtl;}
 .sec-lbl{font-size:9px;font-weight:700;color:var(--gold);border-right:2px solid var(--gold);padding-right:5px;margin:2px 0 3px;flex-shrink:0;}
 .slide-det{display:flex;flex-direction:column;gap:8px;}
@@ -230,7 +232,7 @@ function buildSummary() {
       + '<div class="sr-m">ارزش معاملات ' + nVal(s.value) + ' ' + uVal(s.value) + '</div>'
       + '</div></div></div>';
   });
-  html += '</div><div class="hint">آخرین به‌روزرسانی ۱۴۰۵/۰۴/۲۱ ساعت ۱۴:۱۶</div>';
+  html += '</div><div class="hint">آخرین به‌روزرسانی ۱۴۰۵/۰۴/۲۱ ساعت ۱۴:۲۴</div>';
   return html;
 }
 
@@ -278,12 +280,16 @@ function buildDayCandle(s) {
   l = Math.min(l, o, c);
   var range = h - l;
   var pos = function(v) {
-    return range > 0 ? 8 + ((v - l) / range * 84) : 50;
+    return range > 0 ? 22 + ((v - l) / range * 56) : 50;
   };
   var op = pos(o), cp = pos(c);
   var bodyLeft = Math.min(op, cp);
   var bodyWidth = Math.max(Math.abs(cp - op), 2);
+  var isDoji = Math.abs(c - o) < 0.0001;
   var cls = c > o ? 'dc-up' : (c < o ? 'dc-down' : 'dc-flat');
+  var bodyHtml = isDoji
+    ? '<div class="dc-doji dc-flat" style="left:' + op + '%"></div>'
+    : '<div class="dc-body ' + cls + '" style="left:' + bodyLeft + '%;width:' + bodyWidth + '%"></div>';
   var tip = 'Open: ' + o.toLocaleString('fa-IR')
     + ' | Close: ' + c.toLocaleString('fa-IR')
     + ' | High: ' + h.toLocaleString('fa-IR')
@@ -292,10 +298,10 @@ function buildDayCandle(s) {
   return '<div class="day-candle" title="' + tip + '">'
     + '<div class="dc-title">کندل روز</div>'
     + '<div class="dc-track">'
-    + '<div class="dc-wick ' + cls + '" style="left:8%;width:84%"></div>'
-    + '<div class="dc-cap ' + cls + '" style="left:8%"></div>'
-    + '<div class="dc-cap ' + cls + '" style="left:92%"></div>'
-    + '<div class="dc-body ' + cls + '" style="left:' + bodyLeft + '%;width:' + bodyWidth + '%"></div>'
+    + '<div class="dc-wick ' + cls + '" style="left:22%;width:56%"></div>'
+    + '<div class="dc-cap ' + cls + '" style="left:22%"></div>'
+    + '<div class="dc-cap ' + cls + '" style="left:78%"></div>'
+    + bodyHtml
     + '</div>'
     + '<div class="dc-range"><span>L ' + l.toLocaleString('fa-IR') + '</span>'
     + '<span>H ' + h.toLocaleString('fa-IR') + '</span></div>'
