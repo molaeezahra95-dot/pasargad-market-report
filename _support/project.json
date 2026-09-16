@@ -1,0 +1,11 @@
+{
+  "project": "pasargad-market-report",
+  "mode": "static",
+  "args": [],
+  "output": "index.html",
+  "code": [
+    "index.html"
+  ],
+  "imports": [],
+  "port": null
+}
